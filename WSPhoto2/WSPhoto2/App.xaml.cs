@@ -14,7 +14,7 @@ namespace WSPhoto2
             InitializeComponent();
 
             // página inicial da aplicação (com barra de navegação)
-            Views.MainPage pagInicial = new Views.MainPage();
+            Views.PaginaInicial pagInicial = new Views.PaginaInicial();
             MainPage = new NavigationPage(pagInicial)
             {
                 BarBackgroundColor = Color.DarkSeaGreen,

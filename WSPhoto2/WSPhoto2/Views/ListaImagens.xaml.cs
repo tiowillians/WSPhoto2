@@ -15,16 +15,16 @@ namespace WSPhoto2.Views
     public partial class ListaImagens : ContentPage
     {
         ImagensViewModel viewModel;
-        public ListaImagens(double lat, double lng)
+        public ListaImagens(double lat, double lng, int raio)
         {
             InitializeComponent();
             viewModel = new ImagensViewModel();
             this.BindingContext = viewModel;
 
-            MostraImagens(lat, lng);
+            MostraImagens(lat, lng, raio);
         }
 
-        public async void MostraImagens(double lat, double lng)
+        public async void MostraImagens(double lat, double lng, int raio)
         {
             // mostra indicador de processamento em segundo plano e limpa dados da última busca
             viewModel.IsBusy = true;
@@ -32,7 +32,7 @@ namespace WSPhoto2.Views
             viewModel.Imagens.Clear();
 
             // consumir WebService do Google Place Photos para obter imagens
-            WSGooglePlacesResponse resp = await MyWebServices.GetSearchAsync(lat, lng);
+            WSGooglePlacesResponse resp = await MyWebServices.GetSearchAsync(lat, lng, raio);
             if (resp == null)
             {
                 viewModel.IsBusy = false;
@@ -57,8 +57,10 @@ namespace WSPhoto2.Views
                 {
                     foreach (Photo foto in r.Photos)
                     {
-                        img = await MyWebServices.GetPhotoAsync(400, foto.Photo_reference);
-                        imgModel = new ImagensModel(r.Name, foto.Html_attributions, r.Vicinity, r.Geometry.GeoLocation, img);
+                        img = await MyWebServices.GetPhotoAsync(250, foto.Photo_reference);
+                        imgModel = new ImagensModel(r.Name, foto.Html_attributions, r.Vicinity,
+                                                    r.Geometry.GeoLocation, img, foto.Width, foto.Height,
+                                                    foto.Photo_reference);
 
                         viewModel.Imagens.Add(imgModel);
                     }
@@ -72,6 +74,18 @@ namespace WSPhoto2.Views
             viewModel.ListaVazia = (viewModel.Imagens.Count == 0);
         }
 
+        public void AtualizaImagemHD(string reference, object imgHD)
+        {
+            foreach (ImagensModel im in viewModel.Imagens)
+            {
+                if (im.Reference.CompareTo(reference) == 0)
+                {
+                    im.ImagemHD = imgHD;
+                    return;
+                }
+            }
+        }
+
         async void Imagem_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
             // obtem item selecionado
@@ -80,7 +94,7 @@ namespace WSPhoto2.Views
                 return;
 
             // mostra janela com detalhes
-            DetalheImagem detPage = new DetalheImagem(item);
+            DetalheImagem detPage = new DetalheImagem(this, item);
             await Navigation.PushAsync(detPage);
         }
     }

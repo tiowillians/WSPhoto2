@@ -18,13 +18,15 @@
                         <ViewCell>
                             <Grid BackgroundColor="White" Padding="2" RowSpacing="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Image Source="{Binding Imagem}" Grid.Column="0" />
+                                <Image Source="{Binding Imagem}" Grid.Column="0" Aspect="AspectFit"
+                                       VerticalOptions="Fill" HorizontalOptions="Fill"/>
                                 <Label Text="{Binding Titulo}" Grid.Column="1" FontAttributes="Bold" FontSize="15"
-                                       VerticalOptions="Center" HorizontalOptions="Center"/>
+                                       VerticalOptions="Fill" HorizontalOptions="Fill"
+                                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

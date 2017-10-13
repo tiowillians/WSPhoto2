@@ -20,7 +20,6 @@ namespace WSPhoto2.UWP
         public MainPage()
         {
             this.InitializeComponent();
-
             LoadApplication(new WSPhoto2.App());
         }
     }

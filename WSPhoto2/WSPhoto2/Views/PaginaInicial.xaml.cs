@@ -8,9 +8,9 @@ using Xamarin.Forms.Maps;
 
 namespace WSPhoto2.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class PaginaInicial : ContentPage
     {
-        public MainPage()
+        public PaginaInicial()
         {
             InitializeComponent();
 
@@ -19,11 +19,16 @@ namespace WSPhoto2.Views
             mapVisualizacao.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Distance.FromKilometers(50)));
         }
 
-        private async void mapVisualizacao_Tapped(object sender, CustomControls.MapTapEventArgs e)
+        private async void MapVisualizacao_Tapped(object sender, CustomControls.MapTapEventArgs e)
         {
             // mostra janela com lista das imagens
-            ListaImagens listaPage = new ListaImagens(e.Position.Latitude, e.Position.Longitude);
+            ListaImagens listaPage = new ListaImagens(e.Position.Latitude, e.Position.Longitude, (int)raioSlider.Value);
             await Navigation.PushAsync(listaPage);
+        }
+
+        private void RaioSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+
         }
     }
 }

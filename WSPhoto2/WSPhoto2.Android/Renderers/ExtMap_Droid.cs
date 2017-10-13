@@ -66,7 +66,7 @@ namespace WSPhoto2.Android.Renderers
 
             Type baseType = typeof(MapRenderer);
             foreach (var currentMethod in baseType.GetMethods(System.Reflection.BindingFlags.NonPublic |
-                                                             System.Reflection.BindingFlags.Instance |
+                                                              System.Reflection.BindingFlags.Instance |
                                                               System.Reflection.BindingFlags.DeclaredOnly))
             {
 
