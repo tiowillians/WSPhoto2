@@ -13,7 +13,7 @@ namespace WSPhoto2.WebServices
         // URL para acessar WebService Google Place Photo
         public const string URL_WS_SEARCH = "https://maps.googleapis.com/maps/api/place/search/json?";
         public const string URL_WS_PHOTO = "https://maps.googleapis.com/maps/api/place/photo?";
-        public const string GOOGLE_ACCESS_KEY = "AIzaSyCEksRl4phMFbNzADoFtII9B8B0CAyy02M";
+        public const string GOOGLE_ACCESS_KEY = "COLOCAR AQUI A SUA CHAVE DE ACESSO AO API GOOGLE MAPS";
 
         public static async Task<WSGooglePlacesResponse> GetSearchAsync(double lat, double lng, int raio)
         {

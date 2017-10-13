@@ -59,7 +59,7 @@ namespace WSPhoto2.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
-                Xamarin.FormsMaps.Init("kQY8ZeAqhOreZcwRwXEm~V82f71zkHMDF8dveawAzag~AgjoyVWkjBySYF5k2aLK0BXUy_6Ry_pk6813EH0CsxcaPK2Isv34VuKCbua8PMRE");
+                Xamarin.FormsMaps.Init("COLOCAR AQUI A SUA CHAVE DE ACESSO AO BING MAPS");
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
